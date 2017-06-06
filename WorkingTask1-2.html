@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Delta</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script>
+     
+        
+      var list1= document.getElementById("mains");
+      var note = document.getElementById("textin");
+    
+
+      function creat(){
+       var a;
+        var c=localStorage.length;
+        var note = document.getElementById("textin");
+        a=note.value;
+       
+        var list1= document.getElementById("mains");
+        var node=document.createElement("li");                 
+        node.textContent=a;        
+
+        list1.appendChild(node);
+       
+        localStorage.setItem(c, a);
+   }
+   
+        function del()
+      {
+        var num=prompt("Enter the Index of note you wish to delete");
+        var list1= document.getElementById("mains");
+        if((list1.childNodes[num-1])!=null)
+        list1.removeChild(list1.childNodes[num-1]);
+        else
+        alert("!!!THE INDEX DON'T EXIST!!!")
+        localStorage.setItem((num-1),0);
+      }
+      function edit()
+      {  var list1= document.getElementById("mains");
+        var num1=prompt("Enter the index of Note you wish to Edit");
+       var note1= document.getElementById("textin");
+        var a1=note1.value;
+       if(a1=="")
+         alert("Enter the Note the current Note must be edited with");
+       else
+         {
+           var node1=document.createElement("li");
+           node1.textContent = a1;
+
+           list1.replaceChild(node1, list1.childNodes[num1-1]);
+           localStorage.setItem((num1-1),a1);
+         }
+      }
+    </script>
+  </head>
+  <body>
+
+    <div id="container">
+      <div id="header">
+        <h1>NOTES</h1>
+      </div>
+      <div id="content">
+        <div id="nav">
+          <h3>NAVIGATION ::</h3>
+        </div>
+        
+        <button type="button" onclick="creat()">New Note</button>
+
+            
+        <button type="button" onclick="edit()">Edit Note</button>
+            
+        <button type="button" onclick="del()">Delete Note</button>
+        <textarea placeholder="ENTER YOUR NOTES:" rows="10" columns="50" id=textin></textarea>
+       
+        <ol> 
+       <div id="mains"></div>
+        </ol> 
+
+
+        
+      </div>
+      <div id="footer">
+        <p>Copyright &copy; Joe</p>
+      </div>
+    </div>
+
+  </body>
+</html>
